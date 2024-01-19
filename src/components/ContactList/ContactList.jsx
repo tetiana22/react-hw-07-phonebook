@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   ListOfContact,
@@ -11,17 +10,13 @@ import {
   selectError,
   getVisibleContacts,
 } from 'components/redux/selectors';
-import { deleteContact, fetchContacts } from 'components/redux/thunk';
+import { deleteContact } from 'components/redux/thunk';
 
 export const ContactsList = () => {
   const contacts = useSelector(getVisibleContacts);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
 
   const handleDelete = id => dispatch(deleteContact(id));
 

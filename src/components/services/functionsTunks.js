@@ -3,8 +3,9 @@ import {
   deleteContact,
   fetchContacts,
 } from 'components/redux/thunk';
+
 export const arrThunks = [fetchContacts, addContact, deleteContact];
-export const fn = type => arrThunks.map(el => el[type]);
+export const thunksByType = type => arrThunks.map(el => el[type]);
 export const handlePending = state => {
   state.isLoading = true;
 };
@@ -13,7 +14,7 @@ export const handleFulfilled = state => {
   state.error = '';
 };
 export const handleFulfilledFetch = (state, { payload }) => {
-  state.contacts = payload;
+  state.items = payload;
 };
 export const handleFulfilledAdd = (state, { payload }) => {
   state.items = [payload, ...state.items];

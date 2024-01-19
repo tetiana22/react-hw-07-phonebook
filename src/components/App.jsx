@@ -5,11 +5,18 @@ import { Section } from './Section/Section';
 import Filter from './Filter/Filter';
 import { Container, Wrapper } from './App.styled';
 import { ContactsList } from './ContactList/ContactList';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from './redux/selectors';
+import { useEffect } from 'react';
+import { fetchContacts } from './redux/thunk';
 
 export const App = () => {
   const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <Container>

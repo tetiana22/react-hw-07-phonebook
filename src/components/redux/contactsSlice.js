@@ -7,7 +7,7 @@ import {
   handleFulfilledDelete,
   handlePending,
   handleRejected,
-  fn,
+  thunksByType,
 } from 'components/services/functionsTunks';
 
 const initialState = {
@@ -24,9 +24,9 @@ export const contactsSlice = createSlice({
       .addCase(fetchContacts.fulfilled, handleFulfilledFetch)
       .addCase(addContact.fulfilled, handleFulfilledAdd)
       .addCase(deleteContact.fulfilled, handleFulfilledDelete)
-      .addMatcher(isAnyOf(...fn('pending')), handlePending)
-      .addMatcher(isAnyOf(...fn('rejected')), handleRejected)
-      .addMatcher(isAnyOf(...fn('fulfilled')), handleFulfilled);
+      .addMatcher(isAnyOf(...thunksByType('pending')), handlePending)
+      .addMatcher(isAnyOf(...thunksByType('rejected')), handleRejected)
+      .addMatcher(isAnyOf(...thunksByType('fulfilled')), handleFulfilled);
   },
 });
 
